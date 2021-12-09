@@ -1,11 +1,11 @@
 name: semantic-release
 
 on:
-  pull_request_target:
-    types:
-      - opened
-      - edited
-      - synchronize
+  push:
+    branches:
+      - v1
+    paths:
+      - '.github/workflows/*.yaml'
   workflow_call:
     secrets:
       github_token:
