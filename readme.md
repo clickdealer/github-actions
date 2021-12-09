@@ -38,7 +38,7 @@ $ pre-commit install --install-hooks -t pre-commit -t commit-msg
 ### Submitting a Pull Request (PR)
 Before you submit your Pull Request (PR) consider the following guidelines:
 
-1. You have created your new branch from the latest copy of the master branch.
+1. You have created your new branch from the latest copy of the default branch.
 2. Your commit messages follow the Commit Syntax.
 3. Your commit passes the pre-commit-framework checks.
 
