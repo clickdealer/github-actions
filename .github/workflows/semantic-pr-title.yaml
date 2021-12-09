@@ -19,6 +19,11 @@ on:
         type: string
         required: false
 
+env:
+  REQUIRE_SCOPE: ${{ inputs.requireScope }}
+  SCOPES: ${{ inputs.scopes }}
+  TYPES: ${{ inputs.types }}
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -26,14 +31,14 @@ jobs:
       - if: ${{ github.repository == 'clickdealer/github-workflows' }}
         uses: allenevans/set-env@v2.0.0
         with:
-          INPUT_requireScope: true
-          INPUT_scopes: |
+          REQUIRE_SCOPE: true
+          SCOPES: |
             infracost
             semantic-pr-title
             semantic-release
             sonar-scanner
             tlz-checks
-          INPUT_types: |
+          TYPES: |
             feat
             fix
 
@@ -41,12 +46,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
-          requireScope: ${{ env.requireScope || inputs.requireScope }}
-          scopes: ${{ env.scopes || inputs.scopes }}
+          requireScope: ${{ env.REQUIRE_SCOPE }}
+          scopes: ${{ env.SCOPES }}
           subjectPattern: ^(?![A-Z]).+$
           subjectPatternError: |
             The subject "{subject}" found in the pull request title "{title}"
             didn't match the configured pattern. Please ensure that the subject
             doesn't start with an uppercase character.
-          types: ${{ env.types || inputs.types }}
+          types: ${{ env.TYPES }}
           validateSingleCommit: true
