@@ -18,7 +18,7 @@ on:
 
 jobs:
   semantic-pr-title:
-    uses: clickdealer/github-workflows/templates/semantic-pr-title.yaml@v1
+    uses: clickdealer/github-workflows/.github/workflows/semantic-pr-title.yaml@v1
     with:
       requireScope: true
       ...

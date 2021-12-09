@@ -6,18 +6,47 @@ on:
       - opened
       - edited
       - synchronize
+  workflow_call:
+    inputs:
+      requireScope:
+        type: boolean
+        required: false
+        default: false
+      scopes:
+        type: string
+        required: false
+      types:
+        type: string
+        required: false
 
 jobs:
-  semantic-pr-title:
-    uses: clickdealer/github-workflows/templates/semantic-pr-title.yaml@v1
-    with:
-      requireScope: true
-      scopes: |
-        infracost
-        semantic-pr-title
-        semantic-release
-        sonar-scanner
-        tlz-checks
-      types: |
-        feat
-        fix
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ github.repository == 'clickdealer/github-workflows' }}
+        uses: allenevans/set-env@v2.0.0
+        with:
+          INPUT_requireScope: true
+          INPUT_scopes: |
+            infracost
+            semantic-pr-title
+            semantic-release
+            sonar-scanner
+            tlz-checks
+          INPUT_types: |
+            feat
+            fix
+
+      - uses: amannn/action-semantic-pull-request@v3.4.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        with:
+          requireScope: ${{ env.requireScope || inputs.requireScope }}
+          scopes: ${{ env.scopes || inputs.scopes }}
+          subjectPattern: ^(?![A-Z]).+$
+          subjectPatternError: |
+            The subject "{subject}" found in the pull request title "{title}"
+            didn't match the configured pattern. Please ensure that the subject
+            doesn't start with an uppercase character.
+          types: ${{ env.types || inputs.types }}
+          validateSingleCommit: true

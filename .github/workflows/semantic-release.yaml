@@ -1,15 +1,31 @@
 name: semantic-release
 
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - v1
-    paths:
-      - 'templates/*.yaml'
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+  workflow_call:
+    secrets:
+      github_token:
+        required: true
 
 jobs:
-  semantic-release:
-    uses: clickdealer/github-workflows/templates/semantic-release.yaml@v1
-    with:
-      token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        with:
+          semantic_version: 18.0.1
+          extra_plugins: |
+            @semantic-release/changelog@6.0.0
+            @semantic-release/git@10.0.0
