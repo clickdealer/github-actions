@@ -1,0 +1,40 @@
+name: sonar-scanner
+
+on:
+  workflow_call:
+    secrets:
+      token:
+        required: true
+      url:
+        required: true
+
+env:
+  GITHUB_TOKEN: ${{ secrets.github_token }}
+  SONARCLOUD_URL: ${{ secrets.url }}
+  SONAR_TOKEN: ${{ secrets.token }}
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - if: ${{ github.event_name == 'push' }}
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.projectKey=clickdealer_${{ github.event.repository.name }}
+            -Dsonar.branch.name=${{ github.ref_name }}
+            -Dsonar.ws.timeout=120
+
+      - if: ${{ github.event_name == 'pull_request' }}
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.projectKey=clickdealer_${{ github.event.repository.name }}
+            -Dsonar.pullrequest.key=${{ github.event.number }}
+            -Dsonar.pullrequest.branch=${{ github.head_ref }}
+            -Dsonar.pullrequest.base=${{ github.base_ref }}
+            -Dsonar.ws.timeout=120

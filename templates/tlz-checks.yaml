@@ -1,0 +1,119 @@
+name: tlz-checks
+
+on:
+  workflow_call:
+    secrets:
+      tfe_token:
+        required: true
+
+jobs:
+  checkov:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: checkov
+        uses: bridgecrewio/checkov-action@v12.641.0
+        with:
+          framework: terraform
+
+  terrascan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: terrascan config file exists
+        uses: andstor/file-existence-action@v1
+        id: config_file
+        with:
+          files: .terrascan.yaml
+
+      - name: terrascan
+        uses: accurics/terrascan-action@v1.4.1
+        with:
+          config_path: ${{ steps.config_file.outputs.files_exists == 'true' && '.terrascan.yaml' || null }}
+          iac_type: terraform
+
+  tfdocs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: terraform docs
+        uses: terraform-docs/gh-actions@v0.11.0
+        with:
+          fail-on-diff: 'true'
+          output-file: readme.md
+
+  tffmt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: terraform fmt
+        uses: dflook/terraform-fmt-check@v1
+
+  tflint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: cache tflint plugins
+        uses: actions/cache@v2
+        with:
+          path: ~/.tflint.d/plugins
+          key: ${{ matrix.os }}-tflint-${{ hashFiles('.tflint.hcl') }}
+
+      - name: install terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: terraform init
+        run: terraform init -backend=false
+
+      - name: install tflint
+        uses: terraform-linters/setup-tflint@v1
+
+      - name: tflint init
+        run: tflint --init
+
+      - name: tflint
+        run: tflint -f compact
+
+  tfsec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: install terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: terraform init
+        run: terraform init -backend=false
+
+      - name: tfsec
+        uses: reviewdog/action-tfsec@v1.12.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          fail_on_error: 'true'
+
+  tfvalidate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+        # https://github.com/hashicorp/terraform/issues/28490
+      - name: hack modules
+        continue-on-error: true
+        run: mv .github/tlz-checks/*.tf .
+
+      - name: terraform validate
+        uses: dflook/terraform-validate@v1
+        env:
+          TERRAFORM_CLOUD_TOKENS: app.terraform.io=${{ secrets.tfe_token }}

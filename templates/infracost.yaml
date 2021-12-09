@@ -1,0 +1,45 @@
+name: infracost
+
+on:
+  workflow_call:
+    secrets:
+      api_key:
+        required: true
+      tfe_token:
+        required: true
+
+jobs:
+  infracost:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: install terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.tfe_token }}
+          terraform_wrapper: false
+
+      - name: terraform init
+        run: terraform init
+
+      - name: terraform plan
+        run: terraform plan -out tfplan.binary
+
+      - name: terraform show
+        run: terraform show -json tfplan.binary > plan.json
+
+      - name: setup infracost
+        uses: infracost/actions/setup@v1
+        with:
+          api-key: ${{ secrets.api_key }}
+
+      - name: generate infracost json
+        run: infracost breakdown --path plan.json --format json --out-file /tmp/infracost.json
+
+      - name: post infracost comment
+        uses: infracost/actions/comment@v1
+        with:
+          path: /tmp/infracost.json
+          behavior: update

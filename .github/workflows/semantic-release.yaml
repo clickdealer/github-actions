@@ -1,0 +1,15 @@
+name: semantic-release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - v1
+    paths:
+      - 'templates/*.yaml'
+
+jobs:
+  semantic-release:
+    uses: clickdealer/github-workflows/templates/semantic-release.yaml@v1
+    with:
+      token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}

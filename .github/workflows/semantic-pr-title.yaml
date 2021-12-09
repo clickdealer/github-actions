@@ -1,0 +1,23 @@
+name: semantic-pr-title
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  semantic-pr-title:
+    uses: clickdealer/github-workflows/templates/semantic-pr-title.yaml@v1
+    with:
+      requireScope: true
+      scopes: |
+        infracost
+        semantic-pr-title
+        semantic-release
+        sonar-scanner
+        tlz-checks
+      types: |
+        feat
+        fix
