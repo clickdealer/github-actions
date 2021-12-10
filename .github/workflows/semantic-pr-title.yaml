@@ -28,7 +28,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ github.repository == 'clickdealer/github-workflows' }}
+      - if: ${{ github.repository == 'clickdealer/github-actions' }}
         uses: allenevans/set-env@v2.0.0
         with:
           REQUIRE_SCOPE: true

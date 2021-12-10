@@ -1,5 +1,5 @@
-# GitHub Workflows
-This repository contains shared workflows used throughout the organization.
+# GitHub Actions
+This repository contains shared actions and workflows used throughout the organization.
 
 ## Using a workflow
 You can call one workflow from within another workflow. This allows you to reuse workflows, avoiding duplication and making your workflows easier to maintain. For more information, see "[Reusing workflows.](https://docs.github.com/en/actions/learn-github-actions/reusing-workflows)"
@@ -18,7 +18,7 @@ on:
 
 jobs:
   semantic-pr-title:
-    uses: clickdealer/github-workflows/.github/workflows/semantic-pr-title.yaml@v1
+    uses: clickdealer/github-actions/.github/workflows/semantic-pr-title.yaml@v1
     with:
       requireScope: true
       ...
