@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.1.0](https://github.com/clickdealer/github-actions/compare/v1.0.0...v1.1.0) (2021-12-13)
+
+
+### Features
+
+* **commitlint:** replace commitizen with commitlint ([7518b53](https://github.com/clickdealer/github-actions/commit/7518b53604f5b6cfdc92a7d38aa24c23f61c371a))
+
 # 1.0.0 (2021-12-09)
 
 
