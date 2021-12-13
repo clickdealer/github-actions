@@ -17,8 +17,8 @@ on:
       - synchronize
 
 jobs:
-  semantic-pr-title:
-    uses: clickdealer/github-actions/.github/workflows/semantic-pr-title.yaml@v1
+  commitlint:
+    uses: clickdealer/github-actions/.github/workflows/commitlint@v1
     with:
       requireScope: true
       ...
