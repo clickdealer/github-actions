@@ -7,6 +7,11 @@ on:
       - edited
       - synchronize
   workflow_call:
+    inputs:
+      configFile:
+        type: string
+        required: false
+        default: .commitlintrc.yml
 
 jobs:
   commitlint:
@@ -18,4 +23,5 @@ jobs:
 
       - uses: wagoid/commitlint-github-action@v4
         with:
+          configFile: ${{ inputs.configFile }}
           failOnWarnings: true
