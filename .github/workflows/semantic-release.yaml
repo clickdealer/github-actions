@@ -8,8 +8,8 @@ on:
       - '.github/workflows/*.yaml'
   workflow_call:
     secrets:
-      github_token:
-        required: true
+      token:
+        required: false
 
 jobs:
   release:
@@ -23,7 +23,7 @@ jobs:
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.github_token }}
+          GITHUB_TOKEN: ${{ secrets.token || secrets.github_token }}
         with:
           semantic_version: 18.0.1
           extra_plugins: |
