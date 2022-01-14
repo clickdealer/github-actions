@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.1](https://github.com/clickdealer/github-actions/compare/v1.2.0...v1.2.1) (2022-01-14)
+
+
+### Bug Fixes
+
+* **confluence-sync:** dont exit after failure ([e8edb67](https://github.com/clickdealer/github-actions/commit/e8edb67f500341731afc01fdc231a76f6a4210c4))
+
 # [1.2.0](https://github.com/clickdealer/github-actions/compare/v1.1.0...v1.2.0) (2022-01-14)
 
 
