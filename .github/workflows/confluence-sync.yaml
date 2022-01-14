@@ -1,0 +1,28 @@
+name: confluence-sync
+
+on:
+  workflow_call:
+    secrets:
+      MARK_USERNAME:
+        required: true
+      MARK_PASSWORD:
+        required: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    container:
+      image: kovetskiy/mark
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Sync to Confluence
+        env:
+          ATLASSIAN_URL: https://click-dealer.atlassian.net/wiki
+          MARK_USERNAME: ${{ secrets.MARK_USERNAME }}
+          MARK_PASSWORD: ${{ secrets.MARK_PASSWORD }}
+        run: |
+          for file in $(find . -name '*.md'); do
+            mark -k --drop-h1 -f $file -b $ATLASSIAN_URL -u $MARK_USERNAME -p $MARK_PASSWORD || exit 0;
+          done
