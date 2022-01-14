@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.2.0](https://github.com/clickdealer/github-actions/compare/v1.1.0...v1.2.0) (2022-01-14)
+
+
+### Bug Fixes
+
+* **semantic-release:** github_token reserved secret ([7384046](https://github.com/clickdealer/github-actions/commit/7384046cbe1efea37c5c565c718e077e42a08e58))
+
+
+### Features
+
+* **confluence-sync:** add workflow ([c7e4ca0](https://github.com/clickdealer/github-actions/commit/c7e4ca0e24315b0888e28450b646a7249fac21f6))
+
 # [1.1.0](https://github.com/clickdealer/github-actions/compare/v1.0.0...v1.1.0) (2021-12-13)
 
 
