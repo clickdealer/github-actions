@@ -37,6 +37,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           cli_config_credentials_token: ${{ secrets.tfe_token }}
+          terraform_wrapper: false
 
       - name: terraform init
         run: terraform init
@@ -90,7 +91,7 @@ jobs:
         uses: jossef/action-set-json-field@v1
         with:
           file: plan.json
-          field: version
+          field: format_version
           value: '0.1'
 
       - name: terrascan
