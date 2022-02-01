@@ -5,8 +5,10 @@ on:
     secrets:
       MARK_USERNAME:
         required: true
+        description: Confluence username
       MARK_PASSWORD:
         required: true
+        description: Confluence password
 
 jobs:
   sync:

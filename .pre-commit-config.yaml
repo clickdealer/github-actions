@@ -9,6 +9,11 @@ repos:
     rev: 2.3.54
     hooks:
       - id: editorconfig-checker
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.6.8
+    hooks:
+      - id: actionlint
+        args: [-ignore, property "github_token" is not defined in object type]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:

@@ -14,4 +14,5 @@ jobs:
 
       - uses: reviewdog/action-actionlint@v1
         with:
+          actionlint_flags: -ignore property "github_token" is not defined in object type
           fail_on_error: true

@@ -6,11 +6,14 @@ on:
       tf_workspace:
         type: string
         required: true
+        description: Terraform Workspace
     secrets:
       api_key:
         required: true
+        description: Infracost API Key
       tfe_token:
         required: true
+        description: Terraform Enterprise API Token
 
 env:
   TF_IN_AUTOMATION: true
@@ -43,7 +46,7 @@ jobs:
         run: terraform init
 
       - name: terraform plan
-        uses: ../actions/tfe-remote-plan
+        uses: ./.github/actions/tfe-remote-plan
         with:
           output: plan.json
           tfe_token: ${{ secrets.tfe_token }}

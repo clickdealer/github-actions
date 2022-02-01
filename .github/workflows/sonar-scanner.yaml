@@ -5,8 +5,10 @@ on:
     secrets:
       token:
         required: true
+        description: SonarQube API Token
       url:
         required: true
+        description: SonarQube Base URL
 
 env:
   GITHUB_TOKEN: ${{ secrets.github_token }}
@@ -22,7 +24,7 @@ jobs:
           fetch-depth: 0
 
       - if: ${{ github.event_name == 'push' }}
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: sonarsource/sonarcloud-github-action@v1.6
         with:
           args: >
             -Dsonar.projectKey=clickdealer_${{ github.event.repository.name }}
@@ -30,7 +32,7 @@ jobs:
             -Dsonar.ws.timeout=120
 
       - if: ${{ github.event_name == 'pull_request' }}
-        uses: sonarsource/sonarcloud-github-action@master
+        uses: sonarsource/sonarcloud-github-action@v1.6
         with:
           args: >
             -Dsonar.projectKey=clickdealer_${{ github.event.repository.name }}
