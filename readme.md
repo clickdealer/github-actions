@@ -20,7 +20,7 @@ jobs:
   commitlint:
     uses: clickdealer/github-actions/.github/workflows/commitlint@v1
     with:
-      requireScope: true
+      configFile: .commitlintrc.yml
       ...
 ```
 
