@@ -1,3 +1,10 @@
+#!/bin/bash
+set -e
+
+OUTPUT=$INPUT_OUTPUT
+TFE_HOST=$INPUT_TFE_HOST
+TFE_TOKEN=$INPUT_TFE_TOKEN
+
 # When using TFC remote execution, terraform doesn't allow us to save the plan output.
 # So we have to save the plan logs so we can parse out the run ID and fetch the plan JSON
 echo "Running terraform plan"

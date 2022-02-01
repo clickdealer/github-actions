@@ -16,7 +16,3 @@ runs:
   steps:
     - shell: bash
       run: ${{ github.action_path }}/tfe-remote-plan.sh
-      env:
-        OUTPUT: ${{ inputs.output }}
-        TFE_HOST: ${{ inputs.tfe_host }}
-        TFE_TOKEN: ${{ inputs.tfe_token }}
