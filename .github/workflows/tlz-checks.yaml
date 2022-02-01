@@ -2,27 +2,80 @@ name: tlz-checks
 
 on:
   workflow_call:
+    inputs:
+      tf_workspace:
+        type: string
+        required: true
     secrets:
       tfe_token:
         required: true
 
+env:
+  TF_IN_AUTOMATION: true
+  TF_INPUT: false
+  TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
+  TF_WORKSPACE: ${{ inputs.tf_workspace }}
+
 jobs:
-  checkov:
+  initialize:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: checkov
-        uses: bridgecrewio/checkov-action@v12.641.0
+      - name: cache terraform plugins
+        uses: actions/cache@v2
         with:
-          framework: terraform
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-terraform-
+
+      - name: install terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.tfe_token }}
+
+      - name: terraform init
+        run: terraform init
+
+      - name: terraform plan
+        uses: ../actions/tfe-remote-plan
+        with:
+          output: plan.json
+          tfe_token: ${{ secrets.tfe_token }}
+
+      - name: upload plan artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: tfplan
+          path: plan.json
+          if-no-files-found: error
+          retention-days: 1
+
+  checkov:
+    runs-on: ubuntu-latest
+    needs: initialize
+    steps:
+      - name: download plan artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: tfplan
+
+      - name: checkov
+        uses: bridgecrewio/checkov-action@v12.1210.0
 
   terrascan:
     runs-on: ubuntu-latest
+    needs: initialize
     steps:
       - name: checkout
         uses: actions/checkout@v2
+
+      - name: download plan artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: tfplan
 
       - name: terrascan config file exists
         uses: andstor/file-existence-action@v1
@@ -30,11 +83,20 @@ jobs:
         with:
           files: .terrascan.yaml
 
+      # hack as terrascan doesn't support 0.2 yet
+      - name: set tfplan version to 0.1
+        uses: jossef/action-set-json-field@v1
+        with:
+          file: plan.json
+          field: version
+          value: '0.1'
+
       - name: terrascan
         uses: accurics/terrascan-action@v1.4.1
         with:
           config_path: ${{ steps.config_file.outputs.files_exists == 'true' && '.terrascan.yaml' || null }}
-          iac_type: terraform
+          iac_dir: '. -f plan.json' # bit hacky, but it works...
+          iac_type: tfplan
 
   tfdocs:
     runs-on: ubuntu-latest
@@ -59,9 +121,18 @@ jobs:
 
   tflint:
     runs-on: ubuntu-latest
+    needs: initialize
     steps:
       - name: checkout
         uses: actions/checkout@v2
+
+      - name: cache terraform plugins
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-terraform-
 
       - name: cache tflint plugins
         uses: actions/cache@v2
@@ -86,9 +157,18 @@ jobs:
 
   tfsec:
     runs-on: ubuntu-latest
+    needs: initialize
     steps:
       - name: checkout
         uses: actions/checkout@v2
+
+      - name: cache terraform plugins
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-terraform-
 
       - name: install terraform
         uses: hashicorp/setup-terraform@v1
@@ -104,9 +184,18 @@ jobs:
 
   tfvalidate:
     runs-on: ubuntu-latest
+    needs: initialize
     steps:
       - name: checkout
         uses: actions/checkout@v2
+
+      - name: cache terraform plugins
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-terraform-
 
         # https://github.com/hashicorp/terraform/issues/28490
       - name: hack modules
@@ -115,5 +204,3 @@ jobs:
 
       - name: terraform validate
         uses: dflook/terraform-validate@v1
-        env:
-          TERRAFORM_CLOUD_TOKENS: app.terraform.io=${{ secrets.tfe_token }}
