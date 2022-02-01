@@ -42,7 +42,7 @@ jobs:
         run: terraform init
 
       - name: terraform plan
-        uses: ./.github/actions/tfe-remote-plan
+        uses: clickdealer/github-actions/.github/actions/tfe-remote-plan@edge
         with:
           output: plan.json
           tfe_token: ${{ secrets.tfe_token }}
