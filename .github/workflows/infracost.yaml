@@ -2,11 +2,21 @@ name: infracost
 
 on:
   workflow_call:
+    inputs:
+      tf_workspace:
+        type: string
+        required: true
     secrets:
       api_key:
         required: true
       tfe_token:
         required: true
+
+env:
+  TF_IN_AUTOMATION: true
+  TF_INPUT: false
+  TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
+  TF_WORKSPACE: ${{ inputs.tf_workspace }}
 
 jobs:
   infracost:
@@ -14,6 +24,14 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+
+      - name: cache terraform plugins
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+          restore-keys: |
+            ${{ runner.os }}-terraform-
 
       - name: install terraform
         uses: hashicorp/setup-terraform@v1
@@ -25,10 +43,10 @@ jobs:
         run: terraform init
 
       - name: terraform plan
-        run: terraform plan -out tfplan.binary
-
-      - name: terraform show
-        run: terraform show -json tfplan.binary > plan.json
+        uses: ../actions/tfe-remote-plan
+        with:
+          output: plan.json
+          tfe_token: ${{ secrets.tfe_token }}
 
       - name: setup infracost
         uses: infracost/actions/setup@v1
