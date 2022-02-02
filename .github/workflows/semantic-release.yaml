@@ -1,12 +1,8 @@
 name: semantic-release
 
 on:
-  push:
-    branches:
-      - v1
-    paths:
-      - '.github/workflows/*.yaml'
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   release:
