@@ -1,0 +1,48 @@
+name: TLZ Prepare Workspace
+description: Reusable logic throughout each job
+
+inputs:
+  artifact_plan_name:
+    description: Artifact name containing the planfile
+    required: false
+  setup_terraform:
+    description: Boolean whether to setup Terraform
+    required: false
+    default: 'true'
+
+runs:
+  using: composite
+  steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: download plan artifact
+      if: inputs.artifact_plan_name # todo: check this works
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{ inputs.artifact_plan_name }}
+
+    - name: create terraform plugin cache dir
+      if: inputs.setup_terraform == 'true'
+      shell: bash
+      run: mkdir --parents $TF_PLUGIN_CACHE_DIR
+
+    - name: cache terraform plugins
+      if: inputs.setup_terraform == 'true'
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+        key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+        restore-keys: |
+          ${{ runner.os }}-terraform-
+
+    - name: install terraform
+      if: inputs.setup_terraform == 'true'
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_wrapper: false
+
+    - name: terraform init
+      if: inputs.setup_terraform == 'true'
+      shell: bash
+      run: terraform init -backend=false
