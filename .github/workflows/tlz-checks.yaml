@@ -7,6 +7,11 @@ on:
         type: string
         required: false
         description: Artifact name containing the planfile
+      configuration_aliases:
+        type: boolean
+        required: false
+        default: false
+        description: Hack to generate a providers file based on configuration_aliases
 
 env:
   TF_IN_AUTOMATION: true
@@ -124,12 +129,32 @@ jobs:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
 
-        # https://github.com/hashicorp/terraform/issues/28490
-        # todo: look into using terraform-config-inspect script
-      - name: hack modules
-        continue-on-error: true
-        run: mv .github/tlz-checks/*.tf .
+      # the 'go' steps resolve a validation issue when using configuration_aliases
+      # https://github.com/hashicorp/terraform/issues/28490
 
-      # todo: replace with custom fmt code, then we can reuse our 'prepare-workspace'
+      - name: setup go
+        if: inputs.configuration_aliases == true
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - name: install terraform-config-inspect
+        if: inputs.configuration_aliases == true
+        run: go install github.com/hashicorp/terraform-config-inspect@v0.0.0-20211115214459-90acf1ca460f
+
+      - name: generate aliased-providers.tf.json
+        if: inputs.configuration_aliases == true
+        run: |
+          terraform-config-inspect --json . | jq -r '
+            [.required_providers[].aliases]
+            | flatten
+            | del(.[] | select(. == null))
+            | reduce .[] as $entry (
+              {};
+              .provider[$entry.name] //= [] | .provider[$entry.name] += [{"alias": $entry.alias}]
+            )
+          ' | tee aliased-providers.tf.json
+
+      # todo: replace with custom validation code, then we can reuse our 'prepare-workspace'
       - name: terraform validate
         uses: dflook/terraform-validate@v1
