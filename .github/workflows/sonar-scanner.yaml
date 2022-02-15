@@ -16,7 +16,7 @@ env:
   SONAR_TOKEN: ${{ secrets.token }}
 
 jobs:
-  scan:
+  sonar-scanner:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

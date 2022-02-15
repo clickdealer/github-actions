@@ -11,7 +11,7 @@ on:
         description: Confluence password
 
 jobs:
-  sync:
+  confluence-sync:
     runs-on: ubuntu-latest
     container:
       image: kovetskiy/mark
