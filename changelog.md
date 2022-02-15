@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.4.0](https://github.com/clickdealer/github-actions/compare/v1.3.0...v1.4.0) (2022-02-15)
+
+
+### Features
+
+* **sonar-scanner:** add projectName property ([c048017](https://github.com/clickdealer/github-actions/commit/c04801722b3ebe1c13d17c1fb1c22ee3cf02c195))
+
 # [1.3.0](https://github.com/clickdealer/github-actions/compare/v1.2.1...v1.3.0) (2022-02-02)
 
 
