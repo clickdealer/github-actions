@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.1](https://github.com/clickdealer/github-actions/compare/v1.4.0...v1.4.1) (2022-02-15)
+
+
+### Bug Fixes
+
+* actions pinned to edge instead of v1 ([ffd31de](https://github.com/clickdealer/github-actions/commit/ffd31de0d911b0f4fa816e114629c27a2e1ecbcb))
+
 # [1.4.0](https://github.com/clickdealer/github-actions/compare/v1.3.0...v1.4.0) (2022-02-15)
 
 
