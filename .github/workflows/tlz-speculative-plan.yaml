@@ -24,6 +24,9 @@ jobs:
 
           echo "::set-output name=tf_workspace::${TF_WORKSPACE}"
 
+      - name: prepare workspace
+        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
+
       - name: tfe remote run
         uses: clickdealer/github-actions/.github/actions/tfe-remote-run@edge
         with:
