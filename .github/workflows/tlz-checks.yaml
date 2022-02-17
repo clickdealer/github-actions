@@ -60,7 +60,7 @@ jobs:
           value: '0.1'
 
       - name: terrascan
-        uses: accurics/terrascan-action@v1
+        uses: clickdealer/terrascan-action@main # temporary until accurics/terrascan-action has a automated release cycle
         with:
           config_path: ${{ steps.config_file.outputs.files_exists == 'true' && '.terrascan.yaml' || null }}
           iac_dir: ${{ inputs.artifact_plan_name && '. -f plan.json' || '.' }}
