@@ -13,7 +13,11 @@ repos:
     rev: v1.6.8
     hooks:
       - id: actionlint
-        args: [-ignore, property "github_token" is not defined in object type]
+        args:
+          - -ignore
+          - property "github_token" is not defined in object type
+          - -ignore
+          - unexpected key "outputs" for "workflow_call" section.
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:

@@ -4,4 +4,4 @@ rules:
   scope-enum:
     - 2
     - always
-    - [commitlint, confluence-sync, infracost, lint-workflows, semantic-release, sonar-scanner, tfe-remote-run, tlz-checks]
+    - [commitlint, confluence-sync, infracost, lint-workflows, semantic-release, sonar-scanner, tfe-remote-run, tlz-checks, tlz-speculative-plan]

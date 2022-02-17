@@ -1,0 +1,39 @@
+name: tlz-speculative-plan
+
+on:
+  workflow_call:
+    outputs:
+      artifact_name:
+        description: Artifact name containing the planfile
+        value: tfplan
+
+jobs:
+  tlz-speculative-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: export branch variables
+        id: export
+        run: |
+          if [[ $GITHUB_BASE_REF = master ]]; then
+            TF_WORKSPACE=prod-infra
+          elif [[ $GITHUB_BASE_REF = staging ]]; then
+            TF_WORKSPACE=stage-infra
+          elif [[ $GITHUB_BASE_REF = develop ]]; then
+            TF_WORKSPACE=dev-infra
+          fi
+
+          echo "::set-output name=tf_workspace::${TF_WORKSPACE}"
+
+      - name: tfe remote run
+        uses: clickdealer/github-actions/.github/workflows/tfe-remote-run.yaml@edge
+        with:
+          output: plan.json
+          tfe_workspace: ${{ steps.export.outputs.tf_workspace }}
+
+      - name: upload plan artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: tfplan
+          path: plan.json
+          if-no-files-found: error
+          retention-days: 1
