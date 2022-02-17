@@ -3,53 +3,28 @@ name: infracost
 on:
   workflow_call:
     inputs:
-      tf_workspace:
+      artifact_plan_name:
         type: string
-        required: true
-        description: Terraform Workspace
+        required: true # todo: make this optional, run plan if not set
+        description: Artifact name containing the planfile
     secrets:
       api_key:
         required: true
         description: Infracost API Key
-      tfe_token:
-        required: true
-        description: Terraform Enterprise API Token
 
 env:
   TF_IN_AUTOMATION: true
   TF_INPUT: false
   TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
-  TF_WORKSPACE: ${{ inputs.tf_workspace }}
 
 jobs:
   infracost:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-
-      - name: cache terraform plugins
-        uses: actions/cache@v2
+      - name: prepare workspace
+        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
         with:
-          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
-          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
-          restore-keys: |
-            ${{ runner.os }}-terraform-
-
-      - name: install terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          cli_config_credentials_token: ${{ secrets.tfe_token }}
-          terraform_wrapper: false
-
-      - name: terraform init
-        run: terraform init
-
-      - name: terraform plan
-        uses: clickdealer/github-actions/.github/actions/tfe-remote-plan@v1
-        with:
-          output: plan.json
-          tfe_token: ${{ secrets.tfe_token }}
+          artifact_plan_name: ${{ inputs.artifact_plan_name }}
 
       - name: setup infracost
         uses: infracost/actions/setup@v1
