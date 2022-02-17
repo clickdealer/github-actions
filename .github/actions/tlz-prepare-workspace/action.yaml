@@ -9,6 +9,13 @@ inputs:
     description: Boolean whether to setup Terraform
     required: false
     default: 'true'
+  terraform_init_backend:
+    description: Boolean whether to initialize Terraform backend
+    required: false
+    default: 'false'
+  tfe_token:
+    description: Terraform Enterprise Token
+    required: false
 
 runs:
   using: composite
@@ -40,9 +47,10 @@ runs:
       if: inputs.setup_terraform == 'true'
       uses: hashicorp/setup-terraform@v1
       with:
+        cli_config_credentials_token: ${{ inputs.tfe_token }}
         terraform_wrapper: false
 
     - name: terraform init
       if: inputs.setup_terraform == 'true'
       shell: bash
-      run: terraform init -backend=false
+      run: terraform init -backend=${{ inputs.terraform_init_backend }}

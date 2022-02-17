@@ -2,6 +2,10 @@ name: tlz-speculative-plan
 
 on:
   workflow_call:
+    secrets:
+      tfe_token:
+        description: Terraform Enterprise Token
+        required: true
     outputs:
       artifact_name:
         description: Artifact name containing the planfile
@@ -31,11 +35,15 @@ jobs:
 
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
+        with:
+          terraform_init_backend: 'true'
+          tfe_token: ${{ secrets.tfe_token }}
 
       - name: tfe remote run
         uses: clickdealer/github-actions/.github/actions/tfe-remote-run@edge
         with:
           output: plan.json
+          tfe_token: ${{ secrets.tfe_token }}
           tfe_workspace: ${{ steps.export.outputs.tf_workspace }}
 
       - name: upload plan artifact
