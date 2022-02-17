@@ -51,13 +51,13 @@ jobs:
           files: .terrascan.yaml
 
       # hack as terrascan doesn't support 1.0 yet
-      - name: set tfplan version to 0.2
+      - name: set tfplan version to 0.1
         uses: jossef/action-set-json-field@v1
         if: inputs.artifact_plan_name
         with:
           file: plan.json
           field: format_version
-          value: '0.2'
+          value: '0.1'
 
       - name: terrascan
         uses: accurics/terrascan-action@v1
@@ -117,7 +117,7 @@ jobs:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
 
-      - name: tfsec
+      - name: tfsec # todo: replace with https://github.com/aquasecurity/tfsec-pr-commenter-action
         uses: reviewdog/action-tfsec@v1
         with:
           github_token: ${{ secrets.github_token }}
