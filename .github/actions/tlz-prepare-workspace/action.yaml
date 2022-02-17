@@ -16,9 +16,6 @@ inputs:
   tfe_token:
     description: Terraform Enterprise Token
     required: false
-  tfe_workspace:
-    description: Terraform Enterprise Workspace
-    required: false
 
 runs:
   using: composite
@@ -57,5 +54,3 @@ runs:
       if: inputs.setup_terraform == 'true'
       shell: bash
       run: terraform init -backend=${{ inputs.terraform_init_backend }}
-      env:
-        TF_WORKSPACE: ${{ inputs.tfe_workspace }}

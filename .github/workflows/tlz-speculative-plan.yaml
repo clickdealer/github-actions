@@ -17,8 +17,10 @@ env:
   TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
 
 jobs:
-  tlz-speculative-plan:
+  export:
     runs-on: ubuntu-latest
+    outputs:
+      tf_workspace: ${{ steps.export.outputs.tf_workspace }}
     steps:
       - name: export branch variables
         id: export
@@ -33,12 +35,17 @@ jobs:
 
           echo "::set-output name=tf_workspace::${TF_WORKSPACE}"
 
+  tlz-speculative-plan:
+    runs-on: ubuntu-latest
+    needs: export
+    env:
+      TF_WORKSPACE: ${{ needs.export.outputs.tf_workspace }}
+    steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
         with:
           terraform_init_backend: 'true'
           tfe_token: ${{ secrets.tfe_token }}
-          tfe_workspace: ${{ steps.export.outputs.tf_workspace }}
 
       - name: tfe remote run
         uses: clickdealer/github-actions/.github/actions/tfe-remote-run@edge
