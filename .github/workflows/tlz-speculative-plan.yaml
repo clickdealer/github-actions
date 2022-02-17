@@ -25,7 +25,7 @@ jobs:
           echo "::set-output name=tf_workspace::${TF_WORKSPACE}"
 
       - name: tfe remote run
-        uses: clickdealer/github-actions/.github/workflows/tfe-remote-run.yaml@edge
+        uses: clickdealer/github-actions/.github/actions/tfe-remote-run@edge
         with:
           output: plan.json
           tfe_workspace: ${{ steps.export.outputs.tf_workspace }}
