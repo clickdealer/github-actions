@@ -10,8 +10,11 @@ inputs:
     default: app.terraform.io
     description: Terraform Enterprise Hostname
   tfe_token:
-    required: true
+    required: false
     description: Terraform Enterprise Token
+  tfe_workspace:
+    required: true
+    description: Terraform Enterprise Workspace
 
 runs:
   using: composite
@@ -21,8 +24,7 @@ runs:
       id: run
       run: ${{ github.action_path }}/tfe-remote-run.sh
       env:
-        TFE_HOST: ${{ inputs.tfe_host }}
-        TFE_TOKEN: ${{ inputs.tfe_token }}
+        TF_WORKSPACE: ${{ inputs.tfe_workspace }}
 
     - name: download remote run planfile
       uses: clickdealer/github-actions/.github/actions/tfe-remote-run-download-planfile@edge
