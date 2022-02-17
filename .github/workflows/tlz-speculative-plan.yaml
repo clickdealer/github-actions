@@ -7,6 +7,11 @@ on:
         description: Artifact name containing the planfile
         value: tfplan
 
+env:
+  TF_IN_AUTOMATION: true
+  TF_INPUT: false
+  TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
+
 jobs:
   tlz-speculative-plan:
     runs-on: ubuntu-latest
