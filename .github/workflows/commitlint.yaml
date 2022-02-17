@@ -8,9 +8,10 @@ on:
   workflow_call:
     inputs:
       configFile:
+        description: Commitlint config file path
         type: string
         required: false
-        default: .commitlintrc.yml
+        default: .commitlintrc.yaml
 
 jobs:
   commitlint:
