@@ -49,8 +49,6 @@ runs:
     - name: install terraform
       if: inputs.setup_terraform == 'true'
       uses: hashicorp/setup-terraform@v1
-      env:
-        TF_WORKSPACE: ${{ inputs.tfe_workspace }}
       with:
         cli_config_credentials_token: ${{ inputs.tfe_token }}
         terraform_wrapper: false
@@ -59,3 +57,5 @@ runs:
       if: inputs.setup_terraform == 'true'
       shell: bash
       run: terraform init -backend=${{ inputs.terraform_init_backend }}
+      env:
+        TF_WORKSPACE: ${{ inputs.tfe_workspace }}
