@@ -1,9 +1,13 @@
-name: Terraform Enterprise Remote Plan
-description: Run a remote plan and generate a plan file
+name: Terraform Enterprise Remote Run Download
+description: Download a remote run planfile
+
 inputs:
   output:
     required: true
     description: File path to generate Terraform plan
+  run_id:
+    required: true
+    description: Terraform Cloud Run ID
   tfe_host:
     required: false
     default: app.terraform.io
@@ -11,12 +15,14 @@ inputs:
   tfe_token:
     required: true
     description: Terraform Enterprise Token
+
 runs:
   using: composite
   steps:
     - shell: bash
-      run: ${{ github.action_path }}/tfe-remote-plan.sh
+      run: ${{ github.action_path }}/tfe-remote-run-download-planfile.sh
       env:
         OUTPUT: ${{ inputs.output }}
+        RUN_ID: ${{ inputs.run_id }}
         TFE_HOST: ${{ inputs.tfe_host }}
         TFE_TOKEN: ${{ inputs.tfe_token }}

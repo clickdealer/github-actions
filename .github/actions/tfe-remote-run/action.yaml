@@ -1,0 +1,34 @@
+name: Terraform Enterprise Remote Run
+description: Perform a Terraform Cloud Run
+
+inputs:
+  output:
+    required: false
+    description: File path to generate Terraform plan
+  tfe_host:
+    required: false
+    default: app.terraform.io
+    description: Terraform Enterprise Hostname
+  tfe_token:
+    required: true
+    description: Terraform Enterprise Token
+
+runs:
+  using: composite
+  steps:
+    - name: start remote run
+      shell: bash
+      id: run
+      run: ${{ github.action_path }}/tfe-remote-run.sh
+      env:
+        TFE_HOST: ${{ inputs.tfe_host }}
+        TFE_TOKEN: ${{ inputs.tfe_token }}
+
+    - name: download remote run planfile
+      uses: clickdealer/github-actions/.github/actions/tfe-remote-run-download-planfile@edge
+      if: inputs.output
+      with:
+        output: ${{ inputs.output }}
+        run_id: ${{ steps.run.outputs.run_id }}
+        tfe_host: ${{ inputs.tfe_host }}
+        tfe_token: ${{ inputs.tfe_token }}
