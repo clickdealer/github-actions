@@ -12,9 +12,6 @@ inputs:
   tfe_token:
     required: false
     description: Terraform Enterprise Token
-  tfe_workspace:
-    required: true
-    description: Terraform Enterprise Workspace
 
 runs:
   using: composite
@@ -23,8 +20,6 @@ runs:
       shell: bash
       id: run
       run: ${{ github.action_path }}/tfe-remote-run.sh
-      env:
-        TF_WORKSPACE: ${{ inputs.tfe_workspace }}
 
     - name: download remote run planfile
       uses: clickdealer/github-actions/.github/actions/tfe-remote-run-download-planfile@edge

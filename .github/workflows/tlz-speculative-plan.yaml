@@ -38,13 +38,13 @@ jobs:
         with:
           terraform_init_backend: 'true'
           tfe_token: ${{ secrets.tfe_token }}
+          tfe_workspace: ${{ steps.export.outputs.tf_workspace }}
 
       - name: tfe remote run
         uses: clickdealer/github-actions/.github/actions/tfe-remote-run@edge
         with:
           output: plan.json
           tfe_token: ${{ secrets.tfe_token }}
-          tfe_workspace: ${{ steps.export.outputs.tf_workspace }}
 
       - name: upload plan artifact
         uses: actions/upload-artifact@v2

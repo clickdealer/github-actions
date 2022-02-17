@@ -16,6 +16,9 @@ inputs:
   tfe_token:
     description: Terraform Enterprise Token
     required: false
+  tfe_workspace:
+    description: Terraform Enterprise Workspace
+    required: false
 
 runs:
   using: composite
@@ -46,6 +49,8 @@ runs:
     - name: install terraform
       if: inputs.setup_terraform == 'true'
       uses: hashicorp/setup-terraform@v1
+      env:
+        TF_WORKSPACE: ${{ inputs.tfe_workspace }}
       with:
         cli_config_credentials_token: ${{ inputs.tfe_token }}
         terraform_wrapper: false
