@@ -6,4 +6,4 @@ run_plan_resp=$(wget -q -O - --header="Authorization: Bearer $TFE_TOKEN" "https:
 plan_json_path=$(echo $run_plan_resp | sed 's/.*\"json-output\":\"\([^\"]*\)\".*/\1/')
 
 # Download the plan JSON
-wget -q -O $OUTPUT --header="Authorization: Bearer $TFE_TOKEN" "https://$TFE_HOST$plan_json_path"
+wget -qO- --header="Authorization: Bearer $TFE_TOKEN" "https://$TFE_HOST$plan_json_path" | jq . > $OUTPUT
