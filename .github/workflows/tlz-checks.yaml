@@ -28,6 +28,11 @@ jobs:
           artifact_plan_name: ${{ inputs.artifact_plan_name }}
           setup_terraform: 'false'
 
+      - name: set checkov config
+        uses: mikefarah/yq@v4.20.2
+        with:
+          cmd: touch .checkov.yaml && yq e '.compact=true' -i .checkov.yaml
+
       - name: checkov
         uses: bridgecrewio/checkov-action@v12.1211.0
         with:
