@@ -22,7 +22,7 @@ runs:
       run: ${{ github.action_path }}/tfe-remote-run.sh
 
     - name: download remote run planfile
-      uses: clickdealer/github-actions/.github/actions/tfe-remote-run-download-planfile@edge
+      uses: clickdealer/github-actions/.github/actions/tfe-remote-run-download-planfile@v1
       if: inputs.output
       with:
         output: ${{ inputs.output }}

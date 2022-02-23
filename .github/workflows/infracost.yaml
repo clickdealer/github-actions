@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: prepare workspace
-        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
+        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
         with:
           artifact_plan_name: ${{ inputs.artifact_plan_name }}
 

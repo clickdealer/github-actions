@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: prepare workspace
-        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
+        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
         with:
           artifact_plan_name: ${{ inputs.artifact_plan_name }}
           setup_terraform: 'false'
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: prepare workspace
-        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
+        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
         with:
           artifact_plan_name: ${{ inputs.artifact_plan_name }}
           setup_terraform: ${{ inputs.artifact_plan_name && 'false' || 'true' }}
@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: prepare workspace
-        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
+        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
 
       - name: cache tflint plugins
         uses: actions/cache@v2
@@ -120,7 +120,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: prepare workspace
-        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
+        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
 
       - name: tfsec # todo: replace with https://github.com/aquasecurity/tfsec-pr-commenter-action
         uses: reviewdog/action-tfsec@v1
@@ -132,7 +132,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: prepare workspace
-        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
+        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
 
       # the 'go' steps resolve a validation issue when using configuration_aliases
       # https://github.com/hashicorp/terraform/issues/28490

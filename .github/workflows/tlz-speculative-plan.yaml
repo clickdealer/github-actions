@@ -42,13 +42,13 @@ jobs:
       TF_WORKSPACE: ${{ needs.export.outputs.tf_workspace }}
     steps:
       - name: prepare workspace
-        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@edge
+        uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
         with:
           terraform_init_backend: 'true'
           tfe_token: ${{ secrets.tfe_token }}
 
       - name: tfe remote run
-        uses: clickdealer/github-actions/.github/actions/tfe-remote-run@edge
+        uses: clickdealer/github-actions/.github/actions/tfe-remote-run@v1
         with:
           output: plan.json
           tfe_token: ${{ secrets.tfe_token }}
