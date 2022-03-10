@@ -23,8 +23,8 @@ on:
         type: string
         default: clickdealer/k8s-${{ github.event.repository.name }}
     secrets:
-      COMPOSER_AUTH:
-        description: Composer authentication if required
+      DOCKER_BUILD_ARGS:
+        description: Set build-time variables
         required: false
       K8S_GITHUB_TOKEN:
         description: GitHub token that has permission to push to the k8s repository
@@ -86,8 +86,7 @@ jobs:
         push: true
         context: .
         file: ${{ inputs.dockerfile }}
-        build-args: |
-          "COMPOSER_AUTH=${{ secrets.COMPOSER_AUTH }}"
+        build-args: ${{ secrets.DOCKER_BUILD_ARGS }}
         target: ${{ inputs.docker_target }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
