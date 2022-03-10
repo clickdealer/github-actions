@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.10.0](https://github.com/clickdealer/github-actions/compare/v1.9.0...v1.10.0) (2022-03-10)
+
+
+### Features
+
+* **gitops:** add build args input ([9b2d272](https://github.com/clickdealer/github-actions/commit/9b2d2721f1aa6a63d2e525dcfe7d57f4d4cd75a0))
+
 # [1.9.0](https://github.com/clickdealer/github-actions/compare/v1.8.1...v1.9.0) (2022-03-10)
 
 
