@@ -8,6 +8,10 @@ on:
         required: false
         type: string
         default: ./docker/Dockerfile
+      docker_target:
+        description: Set the target build stage to build
+        required: false
+        type: string
       image_repository:
         description: The ECR image repository name
         required: false
@@ -84,6 +88,7 @@ jobs:
         file: ${{ inputs.dockerfile }}
         build-args: |
           "COMPOSER_AUTH=${{ secrets.COMPOSER_AUTH }}"
+        target: ${{ inputs.docker_target }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
         tags: ${{ steps.docker_meta.outputs.tags }}
