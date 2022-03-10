@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.7.0](https://github.com/clickdealer/github-actions/compare/v1.6.0...v1.7.0) (2022-03-10)
+
+
+### Features
+
+* **gitops:** add composer authentication ([2d1d270](https://github.com/clickdealer/github-actions/commit/2d1d27069298b0745c3d82160eeae61048f6cee8))
+
 # [1.6.0](https://github.com/clickdealer/github-actions/compare/v1.5.0...v1.6.0) (2022-03-10)
 
 
