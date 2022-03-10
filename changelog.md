@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.12.0](https://github.com/clickdealer/github-actions/compare/v1.11.0...v1.12.0) (2022-03-10)
+
+
+### Features
+
+* **gitops:** cancel in progress builds ([983c31f](https://github.com/clickdealer/github-actions/commit/983c31ff9b9c7a26065026adf824ef7050da7821))
+
 # [1.11.0](https://github.com/clickdealer/github-actions/compare/v1.10.0...v1.11.0) (2022-03-10)
 
 
