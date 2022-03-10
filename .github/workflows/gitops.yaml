@@ -10,12 +10,12 @@ on:
         default: ./docker/Dockerfile
       image_repository:
         description: The ECR image repository name
-        required: true
+        required: false
         type: string
         default: ${{ github.event.repository.name }}
       k8s_repository:
         description: The GitHub repository name that holds the K8S manifests
-        required: true
+        required: false
         type: string
         default: clickdealer/k8s-${{ github.event.repository.name }}
     secrets:
