@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.11.0](https://github.com/clickdealer/github-actions/compare/v1.10.0...v1.11.0) (2022-03-10)
+
+
+### Features
+
+* **gitops:** add concurrency to commit job ([1523490](https://github.com/clickdealer/github-actions/commit/1523490fa249319fa058d30585c04a3ff20937e5))
+
 # [1.10.0](https://github.com/clickdealer/github-actions/compare/v1.9.0...v1.10.0) (2022-03-10)
 
 
