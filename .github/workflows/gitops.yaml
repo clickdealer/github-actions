@@ -82,6 +82,8 @@ jobs:
     - name: Build and push
       id: docker_build
       uses: docker/build-push-action@v2
+      env:
+        NODE_OPTIONS: --max-old-space-size=8192 # was required for click-consumer-app
       with:
         push: true
         context: .
@@ -96,6 +98,7 @@ jobs:
   commit:
     runs-on: ubuntu-latest
     needs: build
+    concurrency: ${{ inputs.k8s_repository }}
     steps:
 
     - name: Checkout
