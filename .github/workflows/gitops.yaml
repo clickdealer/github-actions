@@ -33,6 +33,9 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
     outputs:
       image: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.image_repository }}@${{ steps.docker_build.outputs.digest }}
     steps:
