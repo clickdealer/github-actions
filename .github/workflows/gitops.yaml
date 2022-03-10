@@ -12,10 +12,12 @@ on:
         description: The ECR image repository name
         required: true
         type: string
+        default: ${{ github.event.repository.name }}
       k8s_repository:
         description: The GitHub repository name that holds the K8S manifests
         required: true
         type: string
+        default: clickdealer/k8s-${{ github.event.repository.name }}
     secrets:
       COMPOSER_AUTH:
         description: Composer authentication if required
