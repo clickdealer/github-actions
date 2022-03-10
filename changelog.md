@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.6.0](https://github.com/clickdealer/github-actions/compare/v1.5.0...v1.6.0) (2022-03-10)
+
+
+### Features
+
+* **gitops:** add reuseable workflow ([57bd6d1](https://github.com/clickdealer/github-actions/commit/57bd6d122d6e621b09063a12518c0b283d62d65b))
+
 # [1.5.0](https://github.com/clickdealer/github-actions/compare/v1.4.1...v1.5.0) (2022-02-23)
 
 
