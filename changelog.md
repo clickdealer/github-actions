@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.8.0](https://github.com/clickdealer/github-actions/compare/v1.7.0...v1.8.0) (2022-03-10)
+
+
+### Features
+
+* **gitops:** default repository inputs to repository name ([1a50bc6](https://github.com/clickdealer/github-actions/commit/1a50bc65cb9b413702c2fb4a868665ba71f10564))
+
 # [1.7.0](https://github.com/clickdealer/github-actions/compare/v1.6.0...v1.7.0) (2022-03-10)
 
 
