@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.12.1](https://github.com/clickdealer/github-actions/compare/v1.12.0...v1.12.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* **gitops:** make concurrency key unique ([c264b8e](https://github.com/clickdealer/github-actions/commit/c264b8e8348e15e39e3a5bf56878130b0aea75b8))
+
 # [1.12.0](https://github.com/clickdealer/github-actions/compare/v1.11.0...v1.12.0) (2022-03-10)
 
 
