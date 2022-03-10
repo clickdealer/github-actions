@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.5.0](https://github.com/clickdealer/github-actions/compare/v1.4.1...v1.5.0) (2022-02-23)
+
+
+### Bug Fixes
+
+* tfe-remote-run-download-planfile.sh permissions ([95233f8](https://github.com/clickdealer/github-actions/commit/95233f862e05f73cd75782870c94c6017808a330))
+* **tfe-remote-run:** accept tf workspace properly ([c7d3156](https://github.com/clickdealer/github-actions/commit/c7d3156cd5187d4f59ea782a35fdd2b5d66ce54a))
+* **tlz-checks:** remove sensitive checkov outputs ([5f493bc](https://github.com/clickdealer/github-actions/commit/5f493bcf152f7f9fe37dea36973a3fcf9e55e2ab))
+* **tlz-checks:** revert setting planfile to 0.2 ([4bc9026](https://github.com/clickdealer/github-actions/commit/4bc9026f42f590f0bf1a033f8e15ba03fbad3296))
+* **tlz-prepare-workspace:** pass tf_workspace into terraform init ([b4f0f91](https://github.com/clickdealer/github-actions/commit/b4f0f91e4aca33d8c19baaffeee079bb47546db9))
+* **tlz-speculative-plan:** add missing envs ([2df3139](https://github.com/clickdealer/github-actions/commit/2df3139ac74cf4e484918e7490fa56c6e18925a3))
+* **tlz-speculative-plan:** add missing prepare-workspace step ([0f3a73c](https://github.com/clickdealer/github-actions/commit/0f3a73ca834abbed54fb062b63df91062004ae47))
+* **tlz-speculative-plan:** fix backend initialisation and pass tfe_token ([8b8c72e](https://github.com/clickdealer/github-actions/commit/8b8c72eb702deb7065a7b3b4350f7f682f80319e))
+* **tlz-speculative-plan:** set tf_workspace globally ([883c1e9](https://github.com/clickdealer/github-actions/commit/883c1e9142dfaa2ced49332a79cb7e947cbe5f1e))
+* **tlz-speculative-plan:** typo in action path ([d09a601](https://github.com/clickdealer/github-actions/commit/d09a601ed8a731d0cde5e9a6754af6926f40c821))
+
+
+### Features
+
+* **infracost:** improve performance by accepting a planfile ([de78e12](https://github.com/clickdealer/github-actions/commit/de78e12e345edb557cb39683c79f10723d062ab5))
+* **tfe-remote-run:** prettify json plan file ([0188fd1](https://github.com/clickdealer/github-actions/commit/0188fd1195d5311175ace46dd0a786bcc7c1555f))
+* **tlz-checks:** add configuration_aliases workaround ([732d998](https://github.com/clickdealer/github-actions/commit/732d99836aed55ad92fe2bb1289b1966cb8bf34f))
+* **tlz-checks:** support running without planfile for modules ([a2342b4](https://github.com/clickdealer/github-actions/commit/a2342b4ed94b4cba4971e6d0c38c50a969587e37))
+* **tlz-checks:** use custom terrascan action ([e1646fc](https://github.com/clickdealer/github-actions/commit/e1646fc7accd9ed70e54d770e209a4a1082775d1))
+* **tlz-speculative-plan:** add speculative plan workflow ([d5a4d6f](https://github.com/clickdealer/github-actions/commit/d5a4d6f8c7277c963e7380a4561d52ca9a782e6f))
+
 ## [1.4.1](https://github.com/clickdealer/github-actions/compare/v1.4.0...v1.4.1) (2022-02-15)
 
 
