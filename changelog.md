@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.1](https://github.com/clickdealer/github-actions/compare/v1.8.0...v1.8.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* **gitops:** set repository variables as not required ([a889221](https://github.com/clickdealer/github-actions/commit/a88922138ba41a7f4eb99dfb1e6c92e319c7bcf0))
+
 # [1.8.0](https://github.com/clickdealer/github-actions/compare/v1.7.0...v1.8.0) (2022-03-10)
 
 
