@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.9.0](https://github.com/clickdealer/github-actions/compare/v1.8.1...v1.9.0) (2022-03-10)
+
+
+### Features
+
+* **gitops:** add docker target support ([ac7652b](https://github.com/clickdealer/github-actions/commit/ac7652bcc7c5bec910d78949120e6dbe0eed5d49))
+
 ## [1.8.1](https://github.com/clickdealer/github-actions/compare/v1.8.0...v1.8.1) (2022-03-10)
 
 
