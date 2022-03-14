@@ -1,0 +1,75 @@
+name: serverless-deploy
+
+on:
+  workflow_call:
+    inputs:
+      aws-role:
+        description: AWS role to assume
+        type: string
+        required: true
+      runs-on:
+        description: The type of machine to run the job on
+        type: string
+        required: false
+        default: self-hosted
+      stage:
+        description: Serverless stage
+        type: string
+        required: true
+    secrets:
+      COMPOSER_AUTH:
+        description: PHP auth
+        required: false
+      NPM_AUTH_TOKEN:
+        description: NPM auth token
+        required: false
+
+jobs:
+  serverless-deploy:
+    runs-on: ${{ inputs.runs-on }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: eu-west-2
+          role-duration-seconds: 3600
+          role-skip-session-tagging: true
+          role-to-assume: ${{ inputs.aws-role }}
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 15
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@clickdealer'
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Node Dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Composer config file exists
+        uses: andstor/file-existence-action@v1
+        id: config_file
+        with:
+          files: composer.json, composer.lock
+
+      - name: Install Composer Dependencies
+        uses: php-actions/composer@v6
+        if: steps.config_file.outputs.files_exists == 'true'
+        with:
+          args: --ignore-platform-reqs
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+
+      - name: Serverless Deploy
+        run: npx serverless deploy --stage=${{ inputs.stage }}
