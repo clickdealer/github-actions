@@ -54,6 +54,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Install Node Dependencies
         run: npm ci
         env:
@@ -79,6 +80,7 @@ jobs:
           json=$(echo "${{ secrets.SERVERLESS_ENV }}" | jq -Rnc '[inputs|split("=")|{(.[0]):.[1]}] | add')
           echo ::add-mask::$json
           echo ::set-output name=json::$json
+
       - name: Hide sensitive variables
         uses: actions/github-script@v6
         with:
