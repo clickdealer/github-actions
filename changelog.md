@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.13.0](https://github.com/clickdealer/github-actions/compare/v1.12.1...v1.13.0) (2022-03-15)
+
+
+### Features
+
+* **serverless-deploy:** add workflow  ([#8](https://github.com/clickdealer/github-actions/issues/8)) ([e1cee29](https://github.com/clickdealer/github-actions/commit/e1cee29d49132c1a690b94a933be9e8ff1bf7007))
+
 ## [1.12.1](https://github.com/clickdealer/github-actions/compare/v1.12.0...v1.12.1) (2022-03-10)
 
 
