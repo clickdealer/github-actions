@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.15.0](https://github.com/clickdealer/github-actions/compare/v1.14.0...v1.15.0) (2022-03-16)
+
+
+### Features
+
+* add concurrency to all workflows ([9fab6c6](https://github.com/clickdealer/github-actions/commit/9fab6c65facd3c119bb5837efbbfa5092fc2bee8))
+
 # [1.14.0](https://github.com/clickdealer/github-actions/compare/v1.13.1...v1.14.0) (2022-03-16)
 
 
