@@ -37,6 +37,7 @@ jobs:
 
   tlz-speculative-plan:
     runs-on: ubuntu-latest
+    concurrency: ${{ github.workflow }}-${{ github.ref }}
     needs: export
     env:
       TF_WORKSPACE: ${{ needs.export.outputs.tf_workspace }}

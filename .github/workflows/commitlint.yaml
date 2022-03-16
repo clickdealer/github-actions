@@ -16,6 +16,7 @@ on:
 jobs:
   commitlint:
     runs-on: ubuntu-latest
+    concurrency: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
         with:
