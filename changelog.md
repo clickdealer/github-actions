@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.17.0](https://github.com/clickdealer/github-actions/compare/v1.16.0...v1.17.0) (2022-03-16)
+
+
+### Features
+
+* **tlz-speculative-plan:** add input to disable computing tf_workspace ([22989d6](https://github.com/clickdealer/github-actions/commit/22989d6eb4d08f4053f23c0714b429a6b348fc70))
+
 # [1.16.0](https://github.com/clickdealer/github-actions/compare/v1.15.0...v1.16.0) (2022-03-16)
 
 
