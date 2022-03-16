@@ -2,6 +2,11 @@ name: tlz-speculative-plan
 
 on:
   workflow_call:
+    inputs:
+      tf_workspace:
+        description: Terraform Workspace (If not passed in will be computed from branch)
+        required: false
+        type: string
     secrets:
       tfe_token:
         description: Terraform Enterprise Token
@@ -20,7 +25,7 @@ jobs:
   export:
     runs-on: ubuntu-latest
     outputs:
-      tf_workspace: ${{ steps.export.outputs.tf_workspace }}
+      tf_workspace: ${{ inputs.tf_workspace || steps.export.outputs.tf_workspace }}
     steps:
       - name: export branch variables
         id: export
