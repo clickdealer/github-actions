@@ -77,7 +77,7 @@ jobs:
       - name: Parse serverless environment variables
         id: serverless_env
         run: |
-          json=$(echo "${{ secrets.SERVERLESS_ENV }}" | jq -Rnc '[inputs|split("=")|{(.[0]):.[1]}] | add')
+          json=$(echo "${{ secrets.SERVERLESS_ENV }}" | jq -Rnc '[inputs|try split("=")|{(.[0]):.[1]}] | add // {}')
           echo ::add-mask::$json
           echo ::set-output name=json::$json
 
