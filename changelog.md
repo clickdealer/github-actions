@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.16.0](https://github.com/clickdealer/github-actions/compare/v1.15.0...v1.16.0) (2022-03-16)
+
+
+### Features
+
+* **tlz-speculative-plan:** add ability to override tf_workspace ([4fc64fb](https://github.com/clickdealer/github-actions/commit/4fc64fba59bd2d3519ab140ea15333ce14e56a3d))
+
 # [1.15.0](https://github.com/clickdealer/github-actions/compare/v1.14.0...v1.15.0) (2022-03-16)
 
 
