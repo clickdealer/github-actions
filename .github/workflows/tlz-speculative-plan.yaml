@@ -29,11 +29,11 @@ env:
 jobs:
   export:
     runs-on: ubuntu-latest
-    if: inputs.compute_tf_workspace
     outputs:
       tf_workspace: ${{ steps.export.outputs.tf_workspace }}
     steps:
       - name: export branch variables
+        if: inputs.compute_tf_workspace
         id: export
         run: |
           if [[ $GITHUB_BASE_REF = master ]]; then
