@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.17.1](https://github.com/clickdealer/github-actions/compare/v1.17.0...v1.17.1) (2022-03-16)
+
+
+### Bug Fixes
+
+* **tlz-speculative-plan:** fix compute_tf_workspace not working as expected ([61e495e](https://github.com/clickdealer/github-actions/commit/61e495efdfbdcc4c7d7c5610c75f46be8b9ed140))
+
 # [1.17.0](https://github.com/clickdealer/github-actions/compare/v1.16.0...v1.17.0) (2022-03-16)
 
 
