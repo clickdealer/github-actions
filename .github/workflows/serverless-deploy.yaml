@@ -7,6 +7,11 @@ on:
         description: AWS role to assume
         type: string
         required: true
+      command:
+        description: Serverless deploy command
+        type: string
+        required: false
+        default: serverless deploy
       runs-on:
         description: The type of machine to run the job on
         type: string
@@ -88,4 +93,4 @@ jobs:
 
       - name: Serverless Deploy
         env: ${{ fromJSON(steps.serverless_env.outputs.json) }}
-        run: npx serverless deploy --stage=${{ inputs.stage }}
+        run: npx ${{ inputs.command }} --stage=${{ inputs.stage }}
