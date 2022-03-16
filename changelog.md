@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.14.0](https://github.com/clickdealer/github-actions/compare/v1.13.1...v1.14.0) (2022-03-16)
+
+
+### Features
+
+* **serverless-deploy:** add input for deploy command ([2d5e751](https://github.com/clickdealer/github-actions/commit/2d5e751a3867b91bc3e0dbad702cf116ca2265bf))
+
 ## [1.13.1](https://github.com/clickdealer/github-actions/compare/v1.13.0...v1.13.1) (2022-03-16)
 
 
