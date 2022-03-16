@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.13.1](https://github.com/clickdealer/github-actions/compare/v1.13.0...v1.13.1) (2022-03-16)
+
+
+### Bug Fixes
+
+* **serverless-deploy:** syntax errror when no serverless envs exist ([278e92f](https://github.com/clickdealer/github-actions/commit/278e92f5fb76611ecae7477008888affd007635b))
+
 # [1.13.0](https://github.com/clickdealer/github-actions/compare/v1.12.1...v1.13.0) (2022-03-15)
 
 
