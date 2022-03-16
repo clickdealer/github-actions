@@ -3,6 +3,11 @@ name: tlz-speculative-plan
 on:
   workflow_call:
     inputs:
+      compute_tf_workspace:
+        description: Whether to compute the tf_workspace from the branch
+        required: false
+        type: boolean
+        default: true
       tf_workspace:
         description: Terraform Workspace (If not passed in will be computed from branch)
         required: false
@@ -24,8 +29,9 @@ env:
 jobs:
   export:
     runs-on: ubuntu-latest
+    if: inputs.compute_tf_workspace
     outputs:
-      tf_workspace: ${{ inputs.tf_workspace || steps.export.outputs.tf_workspace }}
+      tf_workspace: ${{ steps.export.outputs.tf_workspace }}
     steps:
       - name: export branch variables
         id: export
@@ -45,7 +51,7 @@ jobs:
     concurrency: ${{ github.workflow }}-${{ github.ref }}
     needs: export
     env:
-      TF_WORKSPACE: ${{ needs.export.outputs.tf_workspace }}
+      TF_WORKSPACE: ${{ inputs.tf_workspace || needs.export.outputs.tf_workspace }}
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
