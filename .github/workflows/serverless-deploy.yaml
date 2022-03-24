@@ -106,4 +106,4 @@ jobs:
 
       - name: Post state
         if: inputs.stateS3Bucket
-        run: aws s3 sync .serverless s3://${{ inputs.stateS3Bucket }}
+        run: aws s3 sync .serverless s3://${{ inputs.stateS3Bucket }}/.serverless/
