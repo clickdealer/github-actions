@@ -17,6 +17,10 @@ on:
         type: string
         required: false
         default: self-hosted
+      stateS3Bucket:
+        description: The s3 bucket to store the .serverless state
+        type: string
+        required: false
       stage:
         description: Serverless stage
         type: string
@@ -92,6 +96,14 @@ jobs:
         with:
           script: for (const secret of Object.values(${{ steps.serverless_env.outputs.json }})) core.setSecret(secret)
 
+      - name: Pre state
+        if: inputs.stateS3Bucket
+        run: aws s3 sync s3://${{ inputs.stateS3Bucket }} .
+
       - name: Serverless Deploy
         env: ${{ fromJSON(steps.serverless_env.outputs.json) }}
         run: npx ${{ inputs.command }} --stage=${{ inputs.stage }}
+
+      - name: Post state
+        if: inputs.stateS3Bucket
+        run: aws s3 sync .serverless s3://${{ inputs.stateS3Bucket }}
