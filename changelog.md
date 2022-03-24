@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.18.0](https://github.com/clickdealer/github-actions/compare/v1.17.1...v1.18.0) (2022-03-24)
+
+
+### Features
+
+* **serverless-deploy:** add serverless components state support ([1a68865](https://github.com/clickdealer/github-actions/commit/1a68865416523b9ade89597e9f2122bf73998994))
+
 ## [1.17.1](https://github.com/clickdealer/github-actions/compare/v1.17.0...v1.17.1) (2022-03-16)
 
 
