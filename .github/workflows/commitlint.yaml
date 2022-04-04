@@ -2,9 +2,7 @@ name: commitlint
 
 on:
   pull_request:
-    types:
-      - opened
-      - edited
+    types: [opened, edited, synchronize, reopened]
   workflow_call:
     inputs:
       configFile:

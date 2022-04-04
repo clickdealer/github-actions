@@ -1,3 +1,7 @@
+ci:
+  skip:
+    - actionlint
+
 repos:
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
     rev: v8.0.0
