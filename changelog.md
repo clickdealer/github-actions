@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.19.0](https://github.com/clickdealer/github-actions/compare/v1.18.1...v1.19.0) (2022-04-04)
+
+
+### Features
+
+* **ecmascript-unit-test:** add ecmascript-unit-test ([#10](https://github.com/clickdealer/github-actions/issues/10)) ([ef4898d](https://github.com/clickdealer/github-actions/commit/ef4898d007e481f909a8ef6a8ddab966a332b4bb))
+
 ## [1.18.1](https://github.com/clickdealer/github-actions/compare/v1.18.0...v1.18.1) (2022-03-24)
 
 
