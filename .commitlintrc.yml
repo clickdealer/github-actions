@@ -11,6 +11,7 @@ rules:
         gitops,
         infracost,
         lint-workflows,
+        pre-commit,
         semantic-release,
         serverless-deploy,
         sonar-scanner,
