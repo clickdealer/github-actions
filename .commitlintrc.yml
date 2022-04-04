@@ -1,7 +1,21 @@
-extends: ['@commitlint/config-conventional']
+extends: ["@commitlint/config-conventional"]
 
 rules:
   scope-enum:
     - 2
     - always
-    - [commitlint, confluence-sync, gitops, infracost, lint-workflows, semantic-release, serverless-deploy, sonar-scanner, tfe-remote-run, tlz-checks, tlz-prepare-workspace, tlz-speculative-plan]
+    - [
+        commitlint,
+        confluence-sync,
+        ecmascript-unit-test,
+        gitops,
+        infracost,
+        lint-workflows,
+        semantic-release,
+        serverless-deploy,
+        sonar-scanner,
+        tfe-remote-run,
+        tlz-checks,
+        tlz-prepare-workspace,
+        tlz-speculative-plan,
+      ]
