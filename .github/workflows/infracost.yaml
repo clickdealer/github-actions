@@ -11,6 +11,9 @@ on:
       api_key:
         required: true
         description: Infracost API Key
+      tfe_token:
+        required: false
+        description: Terraform Enterprise Token
 
 env:
   TF_IN_AUTOMATION: true
@@ -26,6 +29,7 @@ jobs:
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
         with:
           artifact_plan_name: ${{ inputs.artifact_plan_name }}
+          tfe_token: ${{ secrets.tfe_token }}
 
       - name: setup infracost
         uses: infracost/actions/setup@v1

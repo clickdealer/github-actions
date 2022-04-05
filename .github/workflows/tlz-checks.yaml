@@ -12,6 +12,10 @@ on:
         required: false
         default: false
         description: Hack to generate a providers file based on configuration_aliases
+    secrets:
+      tfe_token:
+        required: false
+        description: Terraform Enterprise Token
 
 env:
   TF_IN_AUTOMATION: true
@@ -48,6 +52,7 @@ jobs:
         with:
           artifact_plan_name: ${{ inputs.artifact_plan_name }}
           setup_terraform: ${{ inputs.artifact_plan_name && 'false' || 'true' }}
+          tfe_token: ${{ secrets.tfe_token }}
 
       - name: terrascan config file exists
         uses: andstor/file-existence-action@v1
@@ -100,6 +105,8 @@ jobs:
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
+        with:
+          tfe_token: ${{ secrets.tfe_token }}
 
       - name: cache tflint plugins
         uses: actions/cache@v2
@@ -121,6 +128,8 @@ jobs:
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
+        with:
+          tfe_token: ${{ secrets.tfe_token }}
 
       - name: tfsec # todo: replace with https://github.com/aquasecurity/tfsec-pr-commenter-action
         uses: reviewdog/action-tfsec@v1
@@ -133,7 +142,8 @@ jobs:
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
-
+        with:
+          tfe_token: ${{ secrets.tfe_token }}
       # the 'go' steps resolve a validation issue when using configuration_aliases
       # https://github.com/hashicorp/terraform/issues/28490
 
