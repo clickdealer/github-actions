@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.20.0](https://github.com/clickdealer/github-actions/compare/v1.19.0...v1.20.0) (2022-04-05)
+
+
+### Features
+
+* **infracost,tlz-checks:** pass tfe_token into prepare workspace ([#9](https://github.com/clickdealer/github-actions/issues/9)) ([ee0641d](https://github.com/clickdealer/github-actions/commit/ee0641d82a237163338aac8f6b521736b8ee59a8))
+
 # [1.19.0](https://github.com/clickdealer/github-actions/compare/v1.18.1...v1.19.0) (2022-04-04)
 
 
