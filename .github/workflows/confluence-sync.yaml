@@ -27,5 +27,5 @@ jobs:
           MARK_PASSWORD: ${{ secrets.MARK_PASSWORD }}
         run: |
           for file in $(find . -name '*.md'); do
-            mark -k --drop-h1 -f $file -b $ATLASSIAN_URL -u $MARK_USERNAME -p $MARK_PASSWORD || true;
+            mark -k --title-from-h1 --drop-h1 -f $file -b $ATLASSIAN_URL -u $MARK_USERNAME -p $MARK_PASSWORD || true;
           done
