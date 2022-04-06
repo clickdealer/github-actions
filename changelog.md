@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.21.0](https://github.com/clickdealer/github-actions/compare/v1.20.0...v1.21.0) (2022-04-06)
+
+
+### Features
+
+* **confluence-sync:** use h1 as page title ([5e0d135](https://github.com/clickdealer/github-actions/commit/5e0d135e7690d4b1e672d78a22c51cc28f0ba86f))
+
 # [1.20.0](https://github.com/clickdealer/github-actions/compare/v1.19.0...v1.20.0) (2022-04-05)
 
 
