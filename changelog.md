@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.21.1](https://github.com/clickdealer/github-actions/compare/v1.21.0...v1.21.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* **serverless-deploy:** stop installing composer dev dependencies ([863976d](https://github.com/clickdealer/github-actions/commit/863976dc1497a06e7a01a3e01b8643deac8b7cdd))
+
 # [1.21.0](https://github.com/clickdealer/github-actions/compare/v1.20.0...v1.21.0) (2022-04-06)
 
 
