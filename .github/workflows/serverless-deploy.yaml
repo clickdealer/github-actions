@@ -80,7 +80,7 @@ jobs:
         uses: php-actions/composer@v6
         if: steps.config_file.outputs.files_exists == 'true'
         with:
-          args: --ignore-platform-reqs
+          args: --ignore-platform-reqs --no-dev
         env:
           COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
