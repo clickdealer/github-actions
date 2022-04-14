@@ -70,7 +70,7 @@ jobs:
         github_token: ${{ secrets.K8S_GITHUB_TOKEN }}
         repo: clickdealer/dms-modules
         workflow: ng-build.yaml
-        run_id: 2166673362 #temp workaround
+        run_id: 6022471608 #temp workaround
         #branch: ${{ steps.extract_branch.outputs.branch }}
         name: ng-dist
         path: dms/public_html/modules
