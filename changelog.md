@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.21.2](https://github.com/clickdealer/github-actions/compare/v1.21.1...v1.21.2) (2022-04-14)
+
+
+### Bug Fixes
+
+* temp workaround to allow modules download ([81ef2fc](https://github.com/clickdealer/github-actions/commit/81ef2fc842824b170d21904d6c960170ea6d5d23))
+* temp workaround to allow modules download ([397fb0c](https://github.com/clickdealer/github-actions/commit/397fb0c103e0247e11f3c83b3427a3b02e2686cd))
+
 ## [1.21.1](https://github.com/clickdealer/github-actions/compare/v1.21.0...v1.21.1) (2022-04-07)
 
 
