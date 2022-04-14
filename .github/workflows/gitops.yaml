@@ -71,7 +71,7 @@ jobs:
         repo: clickdealer/dms-modules
         workflow: ng-build.yaml
         branch: ${{ steps.extract_branch.outputs.branch }}
-        run_id: 6022471608 #temp workaround
+        run_id: 2166828701 #temp workaround
         name: ng-dist
         path: dms/public_html/modules
 
