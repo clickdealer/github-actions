@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.21.3](https://github.com/clickdealer/github-actions/compare/v1.21.2...v1.21.3) (2022-04-14)
+
+
+### Bug Fixes
+
+* tweak to branch and run id ([504bd7f](https://github.com/clickdealer/github-actions/commit/504bd7fb781730cd72b736a4c324d9fdb8946223))
+* updated run id ([18df99b](https://github.com/clickdealer/github-actions/commit/18df99b226d811509efccc73ee960fb65e831bbe))
+
 ## [1.21.2](https://github.com/clickdealer/github-actions/compare/v1.21.1...v1.21.2) (2022-04-14)
 
 
