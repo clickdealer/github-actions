@@ -65,13 +65,13 @@ jobs:
       # hack, need to make this a little more generic
     - name: Download modules artifact
       if: github.repository == 'clickdealer/click-dms'
-      uses: dawidd6/action-download-artifact@v2
+      uses: dawidd6/action-download-artifact@v2.17
       with:
         github_token: ${{ secrets.K8S_GITHUB_TOKEN }}
         repo: clickdealer/dms-modules
         workflow: ng-build.yaml
         branch: ${{ steps.extract_branch.outputs.branch }}
-        run_id: 2166828701 #need to remove and re-test
+        #run_id: 2166828701 #need to remove and re-test
         name: ng-dist
         path: dms/public_html/modules
 
