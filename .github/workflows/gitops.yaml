@@ -65,7 +65,7 @@ jobs:
       # hack, need to make this a little more generic
     - name: Download modules artifact
       if: github.repository == 'clickdealer/click-dms'
-      uses: dawidd6/action-download-artifact@v2.17
+      uses: dawidd6/action-download-artifact@v2.17.0
       with:
         github_token: ${{ secrets.K8S_GITHUB_TOKEN }}
         repo: clickdealer/dms-modules
