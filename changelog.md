@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.23.0](https://github.com/clickdealer/github-actions/compare/v1.22.0...v1.23.0) (2022-04-20)
+
+
+### Features
+
+* revert artifact download to a prev version - 2.17.0 ([daf9697](https://github.com/clickdealer/github-actions/commit/daf9697962aba39cb2e1af33e70417e1a63886fe))
+
 # [1.22.0](https://github.com/clickdealer/github-actions/compare/v1.21.3...v1.22.0) (2022-04-20)
 
 
