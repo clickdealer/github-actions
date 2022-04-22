@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.24.0](https://github.com/clickdealer/github-actions/compare/v1.23.0...v1.24.0) (2022-04-22)
+
+
+### Features
+
+* added vars for connect deploy test ([9d6a273](https://github.com/clickdealer/github-actions/commit/9d6a2737558e955ba2918d4bef6118b79f6d22fd))
+
 # [1.23.0](https://github.com/clickdealer/github-actions/compare/v1.22.0...v1.23.0) (2022-04-20)
 
 
