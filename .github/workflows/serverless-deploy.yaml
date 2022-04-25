@@ -35,25 +35,6 @@ on:
       SERVERLESS_ENV:
         description: A list of environment variables for Serverless Deploy
         required: false
-      AUTOTRADER_API_HOST:
-        description: API host for specific env
-        required: false
-      AUTOTRADER_API_KEY:
-        description: API key for specific env
-        required: false
-      AUTOTRADER_API_SECRET:
-        description: API key for specific env
-        required: false
-      DB_USER:
-        description: DB user for specific env
-        required: false
-      DB_PASS:
-        description: DB password for specific env
-        required: false
-      ELASTIC_APM_SECRET_TOKEN:
-        description: elastic token for env
-        required: false
-
 
 jobs:
   serverless-deploy:
