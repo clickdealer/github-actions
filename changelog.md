@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.24.1](https://github.com/clickdealer/github-actions/compare/v1.24.0...v1.24.1) (2022-04-25)
+
+
+### Reverts
+
+* Revert "feat: added vars for connect deploy test" ([6a1a594](https://github.com/clickdealer/github-actions/commit/6a1a594e87a38b194d5231fefe2ded7e2a7f7c18))
+
 # [1.24.0](https://github.com/clickdealer/github-actions/compare/v1.23.0...v1.24.0) (2022-04-22)
 
 
