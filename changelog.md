@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.24.3](https://github.com/clickdealer/github-actions/compare/v1.24.2...v1.24.3) (2022-05-25)
+
+
+### Bug Fixes
+
+* buy-631 revert changes ([196130d](https://github.com/clickdealer/github-actions/commit/196130d82c7a0bf915dd36771b9c86bc5afa4a92))
+
 ## [1.24.2](https://github.com/clickdealer/github-actions/compare/v1.24.1...v1.24.2) (2022-05-25)
 
 
