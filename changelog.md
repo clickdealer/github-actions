@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.24.2](https://github.com/clickdealer/github-actions/compare/v1.24.1...v1.24.2) (2022-05-25)
+
+
+### Bug Fixes
+
+* buy-631 amendment to support github package issue ([2bed70f](https://github.com/clickdealer/github-actions/commit/2bed70fc6fee1e6170c67552f2cf473bc4a389f3))
+* buy-631 amendment to support github package issue ([1b63f86](https://github.com/clickdealer/github-actions/commit/1b63f868d3cc1d4a2df7a9b7e9e4a67a2211f90c))
+
 ## [1.24.1](https://github.com/clickdealer/github-actions/compare/v1.24.0...v1.24.1) (2022-04-25)
 
 
