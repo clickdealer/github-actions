@@ -52,12 +52,12 @@ jobs:
           role-skip-session-tagging: true
           role-to-assume: ${{ inputs.aws-role }}
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 15
+          node-version: '12.x'
           registry-url: 'https://npm.pkg.github.com'
+        # Defaults to the user or organization that owns the workflow file
           scope: '@clickdealer'
-
 
       - uses: actions/cache@v2
         with:
