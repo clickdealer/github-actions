@@ -32,7 +32,10 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
@@ -42,6 +45,12 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
+
+    - name: Configure credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::353817990488:role/github-actions
+        aws-region: eu-west-2
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
