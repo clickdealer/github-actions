@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.28.0](https://github.com/clickdealer/github-actions/compare/v1.27.0...v1.28.0) (2022-07-04)
+
+
+### Features
+
+* **gitops:** sre-321 moved to github managed runner ([5d676d3](https://github.com/clickdealer/github-actions/commit/5d676d32d2709b22bd318dc63b3be49d00668784))
+
 # [1.27.0](https://github.com/clickdealer/github-actions/compare/v1.26.0...v1.27.0) (2022-07-04)
 
 
