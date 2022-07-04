@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.27.0](https://github.com/clickdealer/github-actions/compare/v1.26.0...v1.27.0) (2022-07-04)
+
+
+### Features
+
+* **gitops:** sre-321 disabled masking of account id ([542eabf](https://github.com/clickdealer/github-actions/commit/542eabf1a8c8213ac8421f46665c19726776de76))
+
 # [1.26.0](https://github.com/clickdealer/github-actions/compare/v1.25.0...v1.26.0) (2022-07-04)
 
 
