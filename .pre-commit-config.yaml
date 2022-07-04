@@ -14,7 +14,7 @@ repos:
     hooks:
       - id: editorconfig-checker
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.6.10
+    rev: v1.6.15
     hooks:
       - id: actionlint
         args:
@@ -23,6 +23,6 @@ repos:
           - -ignore
           - unexpected key "outputs" for "workflow_call" section.
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.3.0
     hooks:
       - id: check-merge-conflict
