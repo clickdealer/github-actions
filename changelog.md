@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.26.0](https://github.com/clickdealer/github-actions/compare/v1.25.0...v1.26.0) (2022-07-04)
+
+
+### Features
+
+* **gitops:** sre-321 added new role arn to gitops ([d6ac4d0](https://github.com/clickdealer/github-actions/commit/d6ac4d0e4a903a5f68504dd5122a6f37b837e4a1))
+* **gitops:** sre-321 added permissions ([07c6a79](https://github.com/clickdealer/github-actions/commit/07c6a7919ea1fde99cad942037ecde89932f0af7))
+* **serverless-deploy:** sre-321 temp reversion of serverless deploy changes ([d101a18](https://github.com/clickdealer/github-actions/commit/d101a189e9d0c918760a190069ac0bea6ab32590))
+
 # [1.25.0](https://github.com/clickdealer/github-actions/compare/v1.24.3...v1.25.0) (2022-07-04)
 
 
