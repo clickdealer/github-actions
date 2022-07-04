@@ -12,6 +12,11 @@ on:
         type: string
         required: false
         default: serverless deploy
+      runs-on:
+        description: The type of machine to run the job on
+        type: string
+        required: false
+        default: self-hosted
       stateS3Bucket:
         description: The s3 bucket to store the .serverless state
         type: string
@@ -33,7 +38,7 @@ on:
 
 jobs:
   serverless-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runs-on }}
     concurrency: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Checkout
