@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.30.0](https://github.com/clickdealer/github-actions/compare/v1.29.0...v1.30.0) (2022-07-06)
+
+
+### Features
+
+* **serverless-deploy:** added write permissions for packages ([fd43745](https://github.com/clickdealer/github-actions/commit/fd43745f0d7d49edb2c26a639f5b973cc146c7cb))
+* **serverless-deploy:** included runs on variable as could break certain workflows ([af79275](https://github.com/clickdealer/github-actions/commit/af79275d781400972cd5102e8ed4cca68cdfac8a))
+* **serverless-deploy:** included runs on variable as could break certain workflows ([48077d0](https://github.com/clickdealer/github-actions/commit/48077d060276e1fa2394e8ddf4f8567796fc8a43))
+
 # [1.29.0](https://github.com/clickdealer/github-actions/compare/v1.28.0...v1.29.0) (2022-07-06)
 
 
