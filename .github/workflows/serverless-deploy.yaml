@@ -12,11 +12,6 @@ on:
         type: string
         required: false
         default: serverless deploy
-      runs-on:
-        description: The type of machine to run the job on
-        type: string
-        required: false
-        default: self-hosted
       stateS3Bucket:
         description: The s3 bucket to store the .serverless state
         type: string
@@ -38,7 +33,10 @@ on:
 
 jobs:
   serverless-deploy:
-    runs-on: ${{ inputs.runs-on }}
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
     concurrency: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Checkout
@@ -51,6 +49,7 @@ jobs:
           role-duration-seconds: 3600
           role-skip-session-tagging: true
           role-to-assume: ${{ inputs.aws-role }}
+          mask-aws-account-id: false
 
       - uses: actions/setup-node@v1
         with:
