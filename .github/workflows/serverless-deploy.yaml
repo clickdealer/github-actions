@@ -12,7 +12,7 @@ on:
         type: string
         required: false
         default: serverless deploy
-      runs-on:
+      runs-on: #still required as some workflows still use this var
         description: The type of machine to run the job on
         type: string
         required: false
