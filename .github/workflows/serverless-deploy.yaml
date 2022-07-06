@@ -41,6 +41,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+      packages: write
     runs-on: ubuntu-latest
     concurrency: ${{ github.workflow }}-${{ github.ref }}
     steps:
