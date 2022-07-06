@@ -1,4 +1,4 @@
-name: php-workflow
+name: php-checks
 
 on:
   workflow_call:
@@ -29,14 +29,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  run-php-cs-fixer:
+  php-cs-fixer:
     runs-on: ubuntu-latest
     if: inputs.enable-cs-fixer
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
+        uses: actions/checkout@v3
 
       - name: Install Composer Dependencies
         uses: php-actions/composer@v6
@@ -52,17 +50,15 @@ jobs:
           files: php-cs-fixer.dist.php
 
       - name: Run PHP CS Fixer
-        if: inputs.enable-cs-fixer == true && steps.cs_fixer_config_file.outputs.files_exists == 'true'
-        run: ./vendor/bin/php-cs-fixer fix --dry-run --config=php-cs-fixer.dist.php --allow-risky=yes --stop-on-violation
+        if: steps.cs_fixer_config_file.outputs.files_exists == 'true'
+        run: ./vendor/bin/php-cs-fixer fix --dry-run --config=php-cs-fixer.dist.php --allow-risky=yes
 
-  run-phpstan:
+  phpstan:
     runs-on: ubuntu-latest
     if: inputs.enable-phpstan == true
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
+        uses: actions/checkout@v3
 
       - name: Install Composer Dependencies
         uses: php-actions/composer@v6
@@ -78,17 +74,15 @@ jobs:
           files: phpstan.neon
 
       - name: Run PHPStan
-        if: inputs.enable-phpstan == true && steps.phpstan_config_file.outputs.files_exists == 'true'
+        if: steps.phpstan_config_file.outputs.files_exists == 'true'
         run: ./vendor/bin/phpstan analyse
 
-  run-phpunit:
+  phpunit:
     runs-on: ubuntu-latest
     if: inputs.enable-phpunit == true
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
+        uses: actions/checkout@v3
 
       - name: Install Composer Dependencies
         uses: php-actions/composer@v6
@@ -104,5 +98,5 @@ jobs:
           files: phpunit.xml
 
       - name: Run PHPUnit
-        if: inputs.enable-phpunit == true && steps.phpunit_config_file.outputs.files_exists == 'true'
+        if: steps.phpunit_config_file.outputs.files_exists == 'true'
         run: ./vendor/phpunit/phpunit/phpunit
