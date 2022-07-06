@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.29.0](https://github.com/clickdealer/github-actions/compare/v1.28.0...v1.29.0) (2022-07-06)
+
+
+### Features
+
+* **serverless-deploy:** sre-321 moved to github managed runner ([8541c19](https://github.com/clickdealer/github-actions/commit/8541c19113f22f1dbc8e68b4a9151ec7e809f175))
+
 # [1.28.0](https://github.com/clickdealer/github-actions/compare/v1.27.0...v1.28.0) (2022-07-04)
 
 
