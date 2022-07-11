@@ -1,0 +1,102 @@
+name: php-checks
+
+on:
+  workflow_call:
+    inputs:
+      enable-cs-fixer:
+        description: Enable PHP CS Fixer
+        type: boolean
+        required: false
+        default: true
+      enable-phpstan:
+        description: Enable PHPStan
+        type: boolean
+        required: false
+        default: true
+      enable-phpunit:
+        description: Enable PHPUnit
+        type: boolean
+        required: false
+        default: true
+
+    secrets:
+      COMPOSER_AUTH:
+        description: PHP auth
+        required: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    if: inputs.enable-cs-fixer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Composer Dependencies
+        uses: php-actions/composer@v6
+        with:
+          args: --ignore-platform-reqs
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+
+      - name: PHP CS Fixer config file exists
+        uses: andstor/file-existence-action@v1
+        id: cs_fixer_config_file
+        with:
+          files: php-cs-fixer.dist.php
+
+      - name: Run PHP CS Fixer
+        if: steps.cs_fixer_config_file.outputs.files_exists == 'true'
+        run: ./vendor/bin/php-cs-fixer fix --dry-run --config=php-cs-fixer.dist.php --allow-risky=yes
+
+  phpstan:
+    runs-on: ubuntu-latest
+    if: inputs.enable-phpstan == true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Composer Dependencies
+        uses: php-actions/composer@v6
+        with:
+          args: --ignore-platform-reqs
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+
+      - name: PHPStan config file exists
+        uses: andstor/file-existence-action@v1
+        id: phpstan_config_file
+        with:
+          files: phpstan.neon
+
+      - name: Run PHPStan
+        if: steps.phpstan_config_file.outputs.files_exists == 'true'
+        run: ./vendor/bin/phpstan analyse
+
+  phpunit:
+    runs-on: ubuntu-latest
+    if: inputs.enable-phpunit == true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Composer Dependencies
+        uses: php-actions/composer@v6
+        with:
+          args: --ignore-platform-reqs
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+
+      - name: PHPUnit config file exists
+        uses: andstor/file-existence-action@v1
+        id: phpunit_config_file
+        with:
+          files: phpunit.xml
+
+      - name: Run PHPUnit
+        if: steps.phpunit_config_file.outputs.files_exists == 'true'
+        run: ./vendor/phpunit/phpunit/phpunit

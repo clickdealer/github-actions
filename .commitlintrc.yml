@@ -11,6 +11,7 @@ rules:
         gitops,
         infracost,
         lint-workflows,
+        php-checks,
         pre-commit,
         semantic-release,
         serverless-deploy,
