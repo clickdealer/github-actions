@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.31.0](https://github.com/clickdealer/github-actions/compare/v1.30.0...v1.31.0) (2022-07-12)
+
+
+### Features
+
+* atconnect-256: add generic php workflow ([7bb05c9](https://github.com/clickdealer/github-actions/commit/7bb05c9995948ecd4802552750c706afd6e5c29d))
+* **php-checks:** complete all suggest changes ([ef76fce](https://github.com/clickdealer/github-actions/commit/ef76fce00e84f205f48eb5b4954e669a40e0684b))
+* **php-checks:** made recommended changes from pr comment ([9dfb29e](https://github.com/clickdealer/github-actions/commit/9dfb29e7fcf83fc962cf76d773f3dd2f8daef43b))
+* **php-checks:** rename file from yml to yaml ([#21](https://github.com/clickdealer/github-actions/issues/21)) ([9432ccf](https://github.com/clickdealer/github-actions/commit/9432ccf7147c5924f6b84902578e2335314fe9ed))
+
 # [1.30.0](https://github.com/clickdealer/github-actions/compare/v1.29.0...v1.30.0) (2022-07-06)
 
 
