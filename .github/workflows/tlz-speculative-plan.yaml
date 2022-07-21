@@ -26,9 +26,14 @@ env:
   TF_INPUT: false
   TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   export:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     outputs:
       tf_workspace: ${{ steps.export.outputs.tf_workspace }}
     steps:
@@ -48,7 +53,7 @@ jobs:
 
   tlz-speculative-plan:
     runs-on: ubuntu-latest
-    concurrency: ${{ github.workflow }}-${{ github.ref }}
+    timeout-minutes: 15
     needs: export
     env:
       TF_WORKSPACE: ${{ inputs.tf_workspace || needs.export.outputs.tf_workspace }}

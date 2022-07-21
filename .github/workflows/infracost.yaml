@@ -20,10 +20,14 @@ env:
   TF_INPUT: false
   TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   infracost:
     runs-on: ubuntu-latest
-    concurrency: ${{ github.workflow }}-${{ github.ref }}
+    timeout-minutes: 10
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1

@@ -36,14 +36,18 @@ on:
         description: A list of environment variables for Serverless Deploy
         required: false
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   serverless-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       id-token: write
       contents: read
       packages: write
-    runs-on: ubuntu-latest
-    concurrency: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
