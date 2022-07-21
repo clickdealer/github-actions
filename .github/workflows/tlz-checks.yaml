@@ -38,16 +38,16 @@ jobs:
           setup_terraform: 'false'
 
       - name: set checkov config
-        uses: mikefarah/yq@v4.20.2
+        uses: mikefarah/yq@v4.26.1
         with:
           cmd: touch .checkov.yaml && yq e '.compact=true' -i .checkov.yaml
 
       - name: checkov
-        uses: bridgecrewio/checkov-action@v12.1211.0
+        uses: bridgecrewio/checkov-action@v12.1347.0
         with:
-          download_external_modules: 'true'
+          download_external_modules: true
           framework: ${{ inputs.artifact_plan_name && 'terraform_plan' || 'terraform' }}
-          quiet: 'true'
+          quiet: true
 
   terrascan:
     runs-on: ubuntu-latest
@@ -68,7 +68,7 @@ jobs:
 
       # hack as terrascan doesn't support 1.0 yet
       - name: set tfplan version to 0.1
-        uses: jossef/action-set-json-field@v1
+        uses: jossef/action-set-json-field@v2
         if: inputs.artifact_plan_name
         with:
           file: plan.json
@@ -89,10 +89,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: terraform docs
-        uses: terraform-docs/gh-actions@v0
+        uses: terraform-docs/gh-actions@v1
         with:
           fail-on-diff: 'true'
           output-file: readme.md
@@ -102,7 +102,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
         # todo: replace with custom fmt code, then we can reuse our 'prepare-workspace'
       - name: terraform fmt
@@ -118,13 +118,13 @@ jobs:
           tfe_token: ${{ secrets.tfe_token }}
 
       - name: cache tflint plugins
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.tflint.d/plugins
           key: ${{ runner.os }}-tflint-${{ hashFiles('.tflint.hcl') }}
 
       - name: install tflint
-        uses: terraform-linters/setup-tflint@v1
+        uses: terraform-linters/setup-tflint@v2
 
       - name: tflint init
         run: tflint --init
@@ -160,7 +160,7 @@ jobs:
 
       - name: setup go
         if: inputs.configuration_aliases == true
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: 1.17
 

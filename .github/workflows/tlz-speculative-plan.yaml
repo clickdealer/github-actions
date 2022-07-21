@@ -71,7 +71,7 @@ jobs:
           tfe_token: ${{ secrets.tfe_token }}
 
       - name: upload plan artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: tfplan
           path: plan.json

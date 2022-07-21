@@ -21,11 +21,11 @@ runs:
   using: composite
   steps:
     - name: checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: download plan artifact
       if: inputs.artifact_plan_name # todo: check this works
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: ${{ inputs.artifact_plan_name }}
 
@@ -36,7 +36,7 @@ runs:
 
     - name: cache terraform plugins
       if: inputs.setup_terraform == 'true'
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.TF_PLUGIN_CACHE_DIR }}
         key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
@@ -45,7 +45,7 @@ runs:
 
     - name: install terraform
       if: inputs.setup_terraform == 'true'
-      uses: hashicorp/setup-terraform@v1
+      uses: hashicorp/setup-terraform@v2
       with:
         cli_config_credentials_token: ${{ inputs.tfe_token }}
         terraform_wrapper: false
