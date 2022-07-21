@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.32.0](https://github.com/clickdealer/github-actions/compare/v1.31.0...v1.32.0) (2022-07-21)
+
+
+### Features
+
+* add workflow timeouts ([#22](https://github.com/clickdealer/github-actions/issues/22)) ([365fd65](https://github.com/clickdealer/github-actions/commit/365fd65a9b35ca33d7df37a5586e72a203667141))
+
 # [1.31.0](https://github.com/clickdealer/github-actions/compare/v1.30.0...v1.31.0) (2022-07-12)
 
 
