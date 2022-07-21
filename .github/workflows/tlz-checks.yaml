@@ -22,9 +22,14 @@ env:
   TF_INPUT: false
   TF_PLUGIN_CACHE_DIR: ~/.terraform.d/plugin-cache
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   checkov:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
@@ -46,6 +51,7 @@ jobs:
 
   terrascan:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
@@ -80,6 +86,7 @@ jobs:
 
   tfdocs:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -92,6 +99,7 @@ jobs:
 
   tffmt:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -102,6 +110,7 @@ jobs:
 
   tflint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
@@ -125,6 +134,7 @@ jobs:
 
   tfsec:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1
@@ -139,6 +149,7 @@ jobs:
 
   tfvalidate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: prepare workspace
         uses: clickdealer/github-actions/.github/actions/tlz-prepare-workspace@v1

@@ -10,10 +10,14 @@ on:
         required: true
         description: Confluence password
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   confluence-sync:
     runs-on: ubuntu-latest
-    concurrency: ${{ github.workflow }}-${{ github.ref }}
+    timeout-minutes: 5
     container:
       image: kovetskiy/mark
     steps:

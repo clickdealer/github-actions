@@ -30,15 +30,17 @@ on:
         description: GitHub token that has permission to push to the k8s repository
         required: true
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       id-token: write
       contents: read
-    runs-on: ubuntu-latest
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
     outputs:
       image: ${{ steps.login-ecr.outputs.registry }}/${{ inputs.image_repository }}@${{ steps.docker_build.outputs.digest }}
     steps:

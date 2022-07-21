@@ -11,10 +11,14 @@ on:
         required: false
         default: .commitlintrc.yaml
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   commitlint:
     runs-on: ubuntu-latest
-    concurrency: ${{ github.workflow }}-${{ github.ref }}
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
         with:
